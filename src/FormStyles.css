@@ -56,3 +56,7 @@ input , select{
 hr{
     width: 100%;
 }
+
+.disabled{
+    background: grey !important;
+}
