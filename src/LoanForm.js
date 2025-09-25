@@ -3,17 +3,25 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 export default function LoanForm() {
+  const [showModal, setShowModal] = useState(false);
   const [loanInputs, setLoanInputs] = useState({
     name: "",
     phoneNumber: "",
     age: "",
     isEmployee: false,
     salaryRange: "",
+    modalIsVisible: false,
   });
+
+  function handleDivClick() {
+    if (showModal) {
+      setShowModal(false);
+    }
+  }
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    alert("Hello");
+    setShowModal(true);
   }
 
   const btnIsDisabled =
@@ -22,7 +30,11 @@ export default function LoanForm() {
     loanInputs.age === "";
 
   return (
-    <div className="flex" style={{ flexDirection: "column" }}>
+    <div
+      onClick={handleDivClick}
+      className="flex"
+      style={{ flexDirection: "column" }}
+    >
       <form id="loan-form" className="flex" style={{ flexDirection: "column" }}>
         <h1>Requesting a Loan</h1>
         <hr></hr>
@@ -82,7 +94,7 @@ export default function LoanForm() {
         </button>
       </form>
 
-      {/* <Modal /> */}
+      <Modal isVisible={showModal} />
     </div>
   );
 }
