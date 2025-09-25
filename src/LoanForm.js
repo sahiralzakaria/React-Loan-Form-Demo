@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 export default function LoanForm() {
+  const [erMeassage, setErrorMessage] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [loanInputs, setLoanInputs] = useState({
     name: "",
@@ -21,6 +22,14 @@ export default function LoanForm() {
 
   function handleFormSubmit(event) {
     event.preventDefault();
+    setErrorMessage(null);
+
+    const { age, phoneNumber } = loanInputs;
+    if (age < 18 || age > 100) {
+      setErrorMessage("The age is not allowed");
+    } else if (phoneNumber.length < 10 || phoneNumber.length > 12) {
+      setErrorMessage("The phone number format is not allowed");
+    }
     setShowModal(true);
   }
 
@@ -94,7 +103,7 @@ export default function LoanForm() {
         </button>
       </form>
 
-      <Modal isVisible={showModal} />
+      <Modal errorMeassage={erMeassage} isVisible={showModal} />
     </div>
   );
 }
