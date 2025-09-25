@@ -1,7 +1,7 @@
 import "./FormStyles.css";
 import Modal from "./Modal";
 import { useState } from "react";
-
+import MyComponent from "./MyComponent";
 export default function LoanForm() {
   const [erMeassage, setErrorMessage] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -38,6 +38,15 @@ export default function LoanForm() {
     loanInputs.phoneNumber === "" ||
     loanInputs.age === "";
 
+  function handlePhoneNumberInputChange(value) {
+    setLoanInputs({ ...loanInputs, phoneNumber: value });
+  }
+  function handleNameInputChange(value) {
+    setLoanInputs({ ...loanInputs, name: value });
+  }
+  function handleAgeInputChange(value) {
+    setLoanInputs({ ...loanInputs, age: value });
+  }
   return (
     <div
       onClick={handleDivClick}
@@ -48,28 +57,20 @@ export default function LoanForm() {
         <h1>Requesting a Loan</h1>
         <hr></hr>
 
-        <label>Name : </label>
-        <input
+        <MyComponent
+          inputName="name : "
+          handleChange={handleNameInputChange}
           value={loanInputs.name}
-          onChange={(event) => {
-            setLoanInputs({ ...loanInputs, name: event.target.value });
-          }}
         />
-
-        <label>Phone Number : </label>
-        <input
+        <MyComponent
+          inputName="Phone Number : "
+          handleChange={handlePhoneNumberInputChange}
           value={loanInputs.phoneNumber}
-          onChange={(event) => {
-            setLoanInputs({ ...loanInputs, phoneNumber: event.target.value });
-          }}
         />
-
-        <label>Age : </label>
-        <input
+        <MyComponent
+          inputName="age : "
+          handleChange={handleAgeInputChange}
           value={loanInputs.age}
-          onChange={(event) => {
-            setLoanInputs({ ...loanInputs, age: event.target.value });
-          }}
         />
 
         <label style={{ marginTop: "30px" }}>Are you an Employee ?</label>
