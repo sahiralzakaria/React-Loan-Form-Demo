@@ -2,6 +2,8 @@ import "./FormStyles.css";
 import Modal from "./Modal";
 import { useState } from "react";
 import MyComponent from "./MyComponent";
+import { LoanInputContext } from "./contexts/LoanFormInputContext";
+
 export default function LoanForm() {
   const [erMeassage, setErrorMessage] = useState(null);
   const [showModal, setShowModal] = useState(false);
@@ -57,21 +59,35 @@ export default function LoanForm() {
         <h1>Requesting a Loan</h1>
         <hr></hr>
 
-        <MyComponent
-          inputName="name : "
-          handleChange={handleNameInputChange}
-          value={loanInputs.name}
-        />
-        <MyComponent
-          inputName="Phone Number : "
-          handleChange={handlePhoneNumberInputChange}
-          value={loanInputs.phoneNumber}
-        />
-        <MyComponent
-          inputName="age : "
-          handleChange={handleAgeInputChange}
-          value={loanInputs.age}
-        />
+        <LoanInputContext.Provider
+          value={{
+            value: loanInputs.name,
+            handleChange: handleNameInputChange,
+            labelTitle: "name ",
+          }}
+        >
+          <MyComponent />
+        </LoanInputContext.Provider>
+
+        <LoanInputContext.Provider
+          value={{
+            value: loanInputs.phoneNumber,
+            handleChange: handlePhoneNumberInputChange,
+            labelTitle: "Phone Number : ",
+          }}
+        >
+          <MyComponent />
+        </LoanInputContext.Provider>
+
+        <LoanInputContext.Provider
+          value={{
+            value: loanInputs.age,
+            handleChange: handleAgeInputChange,
+            labelTitle: "age : ",
+          }}
+        >
+          <MyComponent />
+        </LoanInputContext.Provider>
 
         <label style={{ marginTop: "30px" }}>Are you an Employee ?</label>
         <input
