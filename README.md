@@ -20,6 +20,7 @@ This project includes a clean and responsive form where users can input:
 - Employment Status
 - Salary Range
 
+
 The **Submit** button remains disabled until all fields are completed correctly.
 
 ---
