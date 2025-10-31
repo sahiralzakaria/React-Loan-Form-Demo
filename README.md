@@ -47,6 +47,7 @@ The app is styled with simple CSS to provide:
 
 ## 💻 Run Locally
 
+
 ```bash
 git clone https://github.com/sahiralzakaria/React-Loan-Form-Demo.git
 cd React-Loan-Form-Demo
